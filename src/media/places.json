@@ -1,0 +1,21 @@
+[{
+    "id":"terminal",
+    "name": "Terminal de transporte",
+    "position": [3.4651, -76.52161]
+},{
+    "id":"varela",
+    "name": "Plazoleta Jairo Varela",
+    "position": [3.454916432132983, -76.53481289300771]
+},{
+    "id":"ermita",
+    "name": "Iglesia La Ermita",
+    "position": [3.45399, -76.53202]
+},{
+    "id":"pance",
+    "name": "Rio Pance",
+    "position": [3.348306429060314, -76.56873907633621]
+},{
+    "id": "ingenio",
+    "name": "Parque del Ingenio",
+    "position": [3.382555, -76.5311104]
+}]
