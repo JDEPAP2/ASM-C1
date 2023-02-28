@@ -5,7 +5,7 @@ import Place from './main/Place';
 import Info from './main/Info';
 
 function App() {
-  const places = require("./media/places.json")
+  const places = require("./media/data/places.json")
   return (
     <div className="App">
       <BrowserRouter>

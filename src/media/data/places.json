@@ -1,0 +1,36 @@
+[{
+    "id":"terminal",
+    "name": "Terminal de transporte",
+    "position": [3.4651, -76.52161],
+    "icon": "ermita-icon.png",
+    "main_pic": "terminal-main.png",
+    "bg_pic": "terminal-fondo.png"
+},{
+    "id":"varela",
+    "name": "Plazoleta Jairo Varela",
+    "position": [3.454916432132983, -76.53481289300771],
+    "icon": "ermita-icon.png",
+    "main_pic": "varela-main.png",
+    "bg_pic": "varela-fondo.png"
+},{
+    "id":"ermita",
+    "name": "Iglesia La Ermita",
+    "position": [3.45399, -76.53202],
+    "icon": "ermita-icon.png",
+    "main_pic": "ermita-main.png",
+    "bg_pic": "ermita-fondo.png"
+},{
+    "id":"pance",
+    "name": "Rio Pance",
+    "position": [3.348306429060314, -76.56873907633621],
+    "icon": "ermita-icon.png",
+    "main_pic": "pance-main.png",
+    "bg_pic": "pance-fondo.png"
+},{
+    "id": "ingenio",
+    "name": "Parque del Ingenio",
+    "position": [3.382555, -76.5311104],
+    "icon": "ermita-icon.png",
+    "main_pic": "ingenio-main.png",
+    "bg_pic": "ingenio-fondo.png"
+}]

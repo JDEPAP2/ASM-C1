@@ -10,6 +10,7 @@ const Place = (props) =>{
             {exist &&(
                 <div>
                     <h1 className="text-lg">{exist.name}</h1>
+                    <img src={`../media/principal/${exist.main_pic}`}></img>
                 </div>
             )}
         </>)
