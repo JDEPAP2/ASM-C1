@@ -50,8 +50,8 @@ const Map = (props) => {
                     aria-describedby="alert-dialog-description"
                   >
                     <div className="flex justify-between items-center">
-                      <div className="p-10">
-                        <h1 className="text-2xl md:text-5xl font-bold tracking-tight leading-7 md:leading-snug truncate">
+                      <div className="py-10">
+                        <h1 className="py-5 text-5xl text-center font-bold tracking-tight leading-7 md:leading-snug truncate">
                           {currentPlace.name}
                         </h1>
                         <img src={require(`../media/principal/${currentPlace.main_pic}`)}></img>
