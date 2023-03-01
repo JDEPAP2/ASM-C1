@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        'Quicksand-SemiBold' : ['Quicksand-SemiBold','sans-serif']
+      }
+    },
   },
   plugins: [],
 }
