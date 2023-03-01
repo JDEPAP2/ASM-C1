@@ -3,7 +3,7 @@ import Map from "./Map";
 
 const Home = (props) =>{
     const {places} = props;
-    const [center, setCenter] = useState([3.42158, -76.5205])
+    const [center, setCenter] = useState([3.423499665982512, -76.5213865392398])
 
     return(<>
             <div id="map" className="">
