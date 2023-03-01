@@ -6,10 +6,12 @@ import { ChevronLeft, ChevronRight, CurrencyRupee } from "@mui/icons-material";
 
 const Map = (props) => {
   const navigate = useNavigate();
+  const { places, center } = props;
   const [open, setOpen] = useState(false);
+  const [centerMap, setCenterMap] = useState(center);
+  const [zoomMap, setZoomMap] = useState(12);
   const [currentPlace, setCurrentPlace] = useState(true);
   const [currentAudio, setCurrentAudio] = useState();
-  const { places, center } = props;
   const L = require("leaflet");
 
   const myIcon = (name) => {
@@ -20,21 +22,21 @@ const Map = (props) => {
     });
   };
 
-  const play = (file) =>{
-    const audio = new Audio(require(`../media/audio/${file}`))
+  const play = (file) => {
+    const audio = new Audio(require(`../media/audio/${file}`));
     audio.loop = true;
     return audio;
-  }
+  };
 
-  useEffect(()=>{
-    if(currentAudio){
-      currentAudio.play()
+  useEffect(() => {
+    if (currentAudio) {
+      currentAudio.play();
     }
-  },[currentAudio])
+  }, [currentAudio]);
 
   return (
     <>
-      <MapContainer center={center} zoom={12} scrollWheelZoom={true}>
+      <MapContainer center={centerMap} zoom={zoomMap} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -50,7 +52,8 @@ const Map = (props) => {
                     click: () => {
                       setOpen(true);
                       setCurrentPlace({ ...place, i: i });
-                      setCurrentAudio(play(place.audio))
+                      setCurrentAudio(play(place.audio));
+                      setCenterMap(place.position);
                     },
                   }}
                 ></Marker>
@@ -62,8 +65,10 @@ const Map = (props) => {
         <Dialog
           open={open}
           onClose={() => {
-            setOpen(false)
-            currentAudio.pause()
+            setOpen(false);
+            setZoomMap(12);
+            setCenterMap(center);
+            currentAudio.pause();
           }}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
@@ -81,24 +86,31 @@ const Map = (props) => {
             </div>
           </div>
           <div className="pb-2 flex justify-center items-center ">
-            <ChevronLeft 
-              color="action" 
+            <ChevronLeft
+              color="action"
               sx={{ fontSize: "5em" }}
-              onClick = {()=> {
-                let i = (currentPlace.i == 0)? places.length-1 : currentPlace.i-1;
-                setCurrentPlace({...places[i], i:i})
-                currentAudio.pause()
-                setCurrentAudio(play(places[i].audio))
-              }}/>
-            <ChevronRight 
-              color="action" 
+              onClick={() => {
+                let i =
+                  currentPlace.i === 0 ? places.length - 1 : currentPlace.i - 1;
+                setCurrentPlace({ ...places[i], i: i });
+                currentAudio.pause();
+                setCurrentAudio(play(places[i].audio));
+                setZoomMap(5);
+                setCenterMap(currentPlace.position);
+              }}
+            />
+            <ChevronRight
+              color="action"
               sx={{ fontSize: "5em" }}
-              onClick = {()=> {
-                let i = (currentPlace.i == places.length-1)? 0 : currentPlace.i+1;
-                setCurrentPlace({...places[i], i:i})
-                currentAudio.pause()
-                setCurrentAudio(play(places[i].audio))
-              }}/>
+              onClick={() => {
+                let i =
+                  currentPlace.i === places.length - 1 ? 0 : currentPlace.i + 1;
+                setCurrentPlace({ ...places[i], i: i });
+                currentAudio.pause();
+                setCurrentAudio(play(places[i].audio));
+                setCenterMap(currentPlace.position);
+              }}
+            />
           </div>
         </Dialog>
       )}
