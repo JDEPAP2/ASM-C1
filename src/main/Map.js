@@ -3,6 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents, useMap} from "react-leaflet"
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Clear, InfoOutlined} from "@mui/icons-material";
+import NavBar from "./Components/NavBar";
 
 
 const Map = (props) => {
@@ -11,7 +12,7 @@ const Map = (props) => {
   const [open, setOpen] = useState(false);
   const [currentPlace, setCurrentPlace] = useState();
   const [currentAudio, setCurrentAudio] = useState();
-  const [zoom, setZoom] = useState(12);
+  const [zoom, setZoom] = useState(13);
   const [positionMap, setPositionMap] = useState(center);
   const mapRef = useRef(null)
   const L = require("leaflet");
@@ -19,7 +20,7 @@ const Map = (props) => {
   const myIcon = (name) => {
     return L.icon({
       iconUrl: require(`../media/icons/${name}`),
-      iconSize: [64, 88],
+      iconSize: [64, 64],
       iconAnchor: [32, 64],
     });
   };
@@ -36,6 +37,11 @@ const Map = (props) => {
     const useComp = useMap()
     useComp.setView(position, zoom)
   }
+  useEffect(()=>{
+    if(currentPlace){
+      setPositionMap(currentPlace.position)
+    }
+  },[currentPlace])
 
   useEffect(() => {
     if (currentAudio && currentPlace) {
@@ -45,7 +51,7 @@ const Map = (props) => {
 
   useEffect(() => {
     if (currentAudio && currentPlace && !open) {
-      setZoom(12);
+      setZoom(13);
       setPositionMap(center)
       currentAudio.pause();
     }
@@ -94,11 +100,11 @@ const Map = (props) => {
           transitionDuration={800}
         >
           <div className="p-3 pb-2 flex justify-end items-end">
-            <InfoOutlined color="action" onClick={()=>{
+            <InfoOutlined className="hover:text-gray-700" color="action" onClick={()=>{
               currentAudio.pause();
               navigate(`place/${currentPlace.id}`)
             }}/>
-            <Clear color="action" onClick={()=>{setOpen(false)}}/>
+            <Clear color="action" className="hover:text-gray-700" onClick={()=>{setOpen(false)}}/>
           </div>
           <div className="flex justify-between items-center">
             <div className="pt-0 pb-1">
@@ -113,6 +119,7 @@ const Map = (props) => {
           </div>
           <div className="pb-2 flex justify-center items-center ">
             <ChevronLeft
+              className="hover:text-gray-700"
               color="action"
               sx={{ fontSize: "2em" }}
               onClick={() => {
@@ -120,10 +127,10 @@ const Map = (props) => {
                 setCurrentPlace({ ...places[i], i: i });
                 currentAudio.pause();
                 setCurrentAudio(play(places[i].audio));
-                setPositionMap(currentPlace.position)
               }}
             />
             <ChevronRight
+              className="hover:text-gray-700"
               color="action"
               sx={{ fontSize: "2em" }}
               onClick={() => {
@@ -131,7 +138,6 @@ const Map = (props) => {
                 setCurrentPlace({ ...places[i], i: i });
                 currentAudio.pause();
                 setCurrentAudio(play(places[i].audio));
-                setPositionMap(currentPlace.position)
               }}
             />
           </div>
